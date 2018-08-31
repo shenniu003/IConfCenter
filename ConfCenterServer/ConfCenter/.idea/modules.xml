@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ConfCenter.iml" filepath="$PROJECT_DIR$/ConfCenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/confserver/confserver.iml" filepath="$PROJECT_DIR$/confserver/confserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model/model.iml" filepath="$PROJECT_DIR$/model/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tool/tool.iml" filepath="$PROJECT_DIR$/tool/tool.iml" />
     </modules>
   </component>
 </project>
