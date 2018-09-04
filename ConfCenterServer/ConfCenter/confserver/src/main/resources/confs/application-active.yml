@@ -1,4 +1,4 @@
-spring:
+﻿spring:
   application:
     name: confcenterserver
 confs:
@@ -6,3 +6,4 @@ confs:
   author:
     name: shenniu003
     des: 666
+  pwd:

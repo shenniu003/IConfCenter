@@ -24,25 +24,31 @@ public class ConfserverApplication {
         SpringApplication.run(ConfserverApplication.class, args);
 
         String pathYml = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\application-active.yml";
-        String pathProperties = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\application-active.properties";
+        String pathProperties = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\application-20180903.properties";
+
+//        try {
+//            LoadConf.readConf(pathYml);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         //System.out.println(YmlConf.readConfToJson(pathYml));
-        try {
-            Map<String, Object> mapYml = YmlConf.readConfToHashMap(pathYml);
-            mapYml.forEach((key, val) -> {
-                System.out.println(key + "=" + val);
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("");
-        try {
-            Map<String, Object> mapProperties = PropertiesConf.readConfToMap(pathProperties);
-            mapProperties.forEach((key, val) -> {
-                System.out.println(key + "=" + val);
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Map<String, Object> mapYml = YmlConf.readConfToHashMap(pathYml);
+//            mapYml.forEach((key, val) -> {
+//                System.out.println(key + "=" + val);
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("");
+//        try {
+//            Map<String, Object> mapProperties = PropertiesConf.readConfToMap(pathProperties);
+//            mapProperties.forEach((key, val) -> {
+//                System.out.println(key + "=" + val);
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

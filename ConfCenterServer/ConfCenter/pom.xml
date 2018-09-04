@@ -12,6 +12,7 @@
         <module>tool</module>
         <module>confserver</module>
         <module>model</module>
+        <module>confclient</module>
     </modules>
 
     <parent>

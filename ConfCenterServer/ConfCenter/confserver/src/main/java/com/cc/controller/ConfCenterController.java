@@ -2,6 +2,8 @@ package com.cc.controller;
 
 import apimodel.MoGetConfRp;
 import apimodel.MoGetConfRq;
+import apimodel.MoRefreshAllConfRp;
+import apimodel.MoRefreshAllConfRq;
 import com.cc.service.ConfCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,18 +25,19 @@ public class ConfCenterController {
      */
     @PostMapping("/getconf")
     public MoGetConfRp getconf(@RequestBody MoGetConfRq rq) {
-
-        MoGetConfRp rp = new MoGetConfRp();
-
-        return rp;
+        return confCenterService.getconf(rq);
     }
 
-    @GetMapping("/publish")
-    public void publish() {
+    /**
+     * 通知所有客户端 重新获取配置
+     *
+     * @param rq
+     * @return
+     */
+    @GetMapping("/refreshAllConf")
+    public MoRefreshAllConfRp refreshAllConf(MoRefreshAllConfRq rq){
 
-
-        confCenterService.publish();
-
+        return confCenterService.refreshAllConf(rq);
     }
 
     @GetMapping("/subscribe")

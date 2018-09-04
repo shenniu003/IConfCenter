@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: confcenterserver
+  redis:
+    single: 192.168.183.9:6378
+    cluster:
+      nodes: 192.168.183.9:6378
+    jedis:
+      pool:
+        max-idle: 8
+        max-active: 8
+        max-wait: 3000
+    timeout: 3000
+    password:
+confserver:
+  confs:
+    confserverurl: http://localhost:8080 #配置中心服务地址
