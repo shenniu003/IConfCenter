@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="client01" />
         <module name="confclient" />
         <module name="confserver" />
         <module name="model" />
@@ -13,6 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="client01" target="1.8" />
       <module name="ConfCenter" target="1.8" />
       <module name="confclient" target="1.8" />
       <module name="confserver" target="1.8" />

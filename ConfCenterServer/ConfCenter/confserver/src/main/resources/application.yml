@@ -19,3 +19,6 @@ confserver:
     baseEndfix: properties #配置文件后缀，计划支持：properties,config,yml
     cacheTime: 86400 #秒 1*60*60*24 = 86400
     currentConfVersion: application-20180903 #默认需要同步配置的版本
+
+server:
+  port: 8000

@@ -1,4 +1,4 @@
-package component;
+package com.ccc.component;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -21,5 +21,11 @@ public class ConfCenterConf {
      */
     @Value("${confserver.confs.confserverurl}")
     public String confserver_confs_confserverurl;
+
+    /**
+     * #配置中心服务地址
+     */
+    @Value("${confserver.confs.currentConfVersion}")
+    public String confserver_confs_currentConfVersion;
 
 }

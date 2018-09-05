@@ -20,6 +20,7 @@ public class ConfCenterController {
 
     /**
      * 获取配置
+     *
      * @param rq
      * @return
      */
@@ -34,18 +35,13 @@ public class ConfCenterController {
      * @param rq
      * @return
      */
-    @GetMapping("/refreshAllConf")
-    public MoRefreshAllConfRp refreshAllConf(MoRefreshAllConfRq rq){
-
+    @PostMapping("/refreshAllConf")
+    public MoRefreshAllConfRp refreshAllConf(@RequestBody MoRefreshAllConfRq rq) {
+        MoRefreshAllConfRp rp = new MoRefreshAllConfRp();
+        if (rq.getConfVersion() == null || rq.getConfVersion().isEmpty()) {
+            rp.setMessage("请设置通知版本号");
+            return rp;
+        }
         return confCenterService.refreshAllConf(rq);
-    }
-
-    @GetMapping("/subscribe")
-    public void subscribe() {
-
-        String channel = "allConfRefresh";
-
-        confCenterService.subscribe();
-
     }
 }

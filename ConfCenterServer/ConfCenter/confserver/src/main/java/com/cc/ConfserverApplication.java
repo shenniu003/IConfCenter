@@ -1,18 +1,9 @@
 package com.cc;
 
-import com.ct.tconf.LoadConf;
-import com.ct.tconf.PropertiesConf;
-import com.ct.tconf.YmlConf;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @SpringBootApplication
 @EnableAutoConfiguration

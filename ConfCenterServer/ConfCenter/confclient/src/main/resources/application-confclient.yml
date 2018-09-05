@@ -1,6 +1,6 @@
 spring:
   application:
-    name: confcenterserver
+    name: confclient
   redis:
     single: 192.168.183.9:6378
     cluster:
@@ -15,3 +15,4 @@ spring:
 confserver:
   confs:
     confserverurl: http://localhost:8080 #配置中心服务地址
+    currentConfVersion: #指定要获取的配置版本，不填保持最新版本

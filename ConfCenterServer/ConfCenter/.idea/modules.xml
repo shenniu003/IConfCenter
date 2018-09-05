@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ConfCenter.iml" filepath="$PROJECT_DIR$/ConfCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client01/client01.iml" filepath="$PROJECT_DIR$/client01/client01.iml" />
       <module fileurl="file://$PROJECT_DIR$/confclient/confclient.iml" filepath="$PROJECT_DIR$/confclient/confclient.iml" />
       <module fileurl="file://$PROJECT_DIR$/confserver/confserver.iml" filepath="$PROJECT_DIR$/confserver/confserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/model/model.iml" filepath="$PROJECT_DIR$/model/model.iml" />

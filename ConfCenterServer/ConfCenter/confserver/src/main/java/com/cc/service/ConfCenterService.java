@@ -34,10 +34,10 @@ public class ConfCenterService {
         Map<String, Object> map = null;
         try {
             //未指定配置版本，采用默认配置版本号
-            if(rq.getConfVersion().isEmpty()){
+            if (rq.getConfVersion().isEmpty()) {
                 rq.setConfVersion(confCenterConf.confserver_confs_currentConfVersion);
             }
-            if(rq.getConfVersion().isEmpty()){
+            if (rq.getConfVersion().isEmpty()) {
                 rp.setMessage("未找到配置版本号");
                 return rp;
             }
@@ -51,6 +51,7 @@ public class ConfCenterService {
                 rp.setConfs(map);
                 rp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
                 rp.setMessage(EnumHelper.EmRpStatus.成功.toString());
+                rp.setConfVersion(rq.getConfVersion());
                 return rp;
             }
 
@@ -70,6 +71,7 @@ public class ConfCenterService {
                 rp.setConfs(map);
                 rp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
                 rp.setMessage(EnumHelper.EmRpStatus.成功.toString());
+                rp.setConfVersion(rq.getConfVersion());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -88,20 +90,10 @@ public class ConfCenterService {
 
         jedisTool.publish(
                 EnumHelper.EmChannel.客户端全部刷新配置channel.getKey(),
-                confCenterConf.confserver_confs_currentConfVersion);
+                rq.getConfVersion());
 
         rp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
         rp.setMessage(EnumHelper.EmRpStatus.成功.toString());
         return rp;
-    }
-
-    public void subscribe() {
-
-        String channel = "allConfRefresh";
-
-        jedisTool.subscribe(channel, b -> {
-            System.out.println(b);
-        });
-
     }
 }
