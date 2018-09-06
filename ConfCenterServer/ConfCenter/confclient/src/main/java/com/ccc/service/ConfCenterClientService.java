@@ -28,7 +28,7 @@ public class ConfCenterClientService {
     /**
      * 从配置中心获取来的配置信息
      */
-    private static MoGetConfRp confRp;
+    public static MoGetConfRp confRp;
 
     /**
      * 根据key获取val
@@ -60,7 +60,6 @@ public class ConfCenterClientService {
      * @return
      */
     public String getCurrentVersion() {
-        getConf();
         return confRp == null ? "" : confRp.getConfVersion();
     }
 
@@ -88,7 +87,6 @@ public class ConfCenterClientService {
         }
         MoGetConfRp rp = this.getConfCenterConf(confCenterConf.confserver_confs_currentConfVersion);
         if (rp.getStatus() == EnumHelper.EmRpStatus.成功.getVal()) {
-            confCenterConf.confserver_confs_currentConfVersion = rp.getConfVersion();
             confRp = rp;
         }
         return confRp;

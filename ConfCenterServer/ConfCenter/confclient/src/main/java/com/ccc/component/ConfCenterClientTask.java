@@ -32,13 +32,13 @@ public class ConfCenterClientTask implements CommandLineRunner {
      */
     @Scheduled(fixedDelay = 1000 * 60)
     public void refreshConf() {
-        System.out.println(new Date() + ":当前版本号" + confCenterConf.confserver_confs_currentConfVersion);
+        System.out.println(new Date() + ":当前配置版本号" + confCenterClientService.getCurrentVersion());
         //如果设置指定版本号不做更新
         if (!confCenterConf.confserver_confs_currentConfVersion.isEmpty()) {
             return;
         }
         System.out.println(new Date() + ":自动拉取配置中心配置");
-        updateConf(confCenterConf.confserver_confs_currentConfVersion);
+        updateConf(confCenterClientService.getCurrentVersion());
     }
 
     /**
