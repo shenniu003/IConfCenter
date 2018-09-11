@@ -1,9 +1,13 @@
 package com.cc;
 
+import com.ct.tconf.LoadConf;
+import com.ct.tconf.PropertiesConf;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+
+import java.io.IOException;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -16,6 +20,24 @@ public class ConfserverApplication {
 
         String pathYml = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\application-active.yml";
         String pathProperties = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\application-20180903.properties";
+        String pathConfig = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\App.config";
+
+//        try {
+//            LoadConf.readConfToMap(pathConfig).forEach((key, val) -> {
+//                System.out.println(key + "=" + val);
+//            });
+//
+////            LoadConf.readConfToMap(pathProperties).forEach((key, val) -> {
+////                System.out.println(key + "=" + val);
+////            });
+//
+////            PropertiesConf.readConfToMap(pathConfig).forEach((key, val) -> {
+////
+////                System.out.println(key + "=" + val);
+////            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 //        try {
 //            LoadConf.readConf(pathYml);

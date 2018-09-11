@@ -13,6 +13,12 @@ import java.util.Properties;
  */
 public class PropertiesConf {
 
+    /**
+     * 获取properties配置信息
+     * @param path
+     * @return
+     * @throws IOException
+     */
     public static Map<String, Object> readConfToMap(String path) throws IOException {
 
         Map<String, Object> map = new HashMap<>();

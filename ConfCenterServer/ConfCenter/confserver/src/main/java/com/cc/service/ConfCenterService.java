@@ -2,6 +2,7 @@ package com.cc.service;
 
 import apimodel.*;
 import com.cc.component.ConfCenterConf;
+import com.ct.tconf.LoadConf;
 import com.ct.tconf.PropertiesConf;
 import com.ct.tjedis.JedisTool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class ConfCenterService {
                     confCenterConf.confserver_confs_basepath,
                     rq.getConfVersion(),
                     confCenterConf.confserver_confs_baseEndfix);
-            map = PropertiesConf.readConfToMap(basepath);
+            map = LoadConf.readConfToMap(basepath);
             if (map.isEmpty()) {
                 rp.setMessage("加载配置文件失败，稍后重试");
                 return rp;
