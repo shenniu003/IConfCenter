@@ -55,46 +55,9 @@ public class ConfCenterService {
                 rp.setConfVersion(rq.getConfVersion());
                 return rp;
             }
-
-            //读取配置文件
-            String basepath = String.format("%s\\%s.%s",
-                    confCenterConf.confserver_confs_basepath,
-                    rq.getConfVersion(),
-                    confCenterConf.confserver_confs_baseEndfix);
-            map = LoadConf.readConfToMap(basepath);
-            if (map.isEmpty()) {
-                rp.setMessage("加载配置文件失败，稍后重试");
-                return rp;
-            }
-
-            //存储到缓存中
-            if (jedisTool.set(cacheKey, map, confCenterConf.confserver_confs_cacheTime)) {
-                rp.setConfs(map);
-                rp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
-                rp.setMessage(EnumHelper.EmRpStatus.成功.toString());
-                rp.setConfVersion(rq.getConfVersion());
-            }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return rp;
-    }
-
-    /**
-     * 通知所有客户端 重新获取配置
-     *
-     * @param rq
-     * @return
-     */
-    public MoRefreshAllConfRp refreshAllConf(MoRefreshAllConfRq rq) {
-        MoRefreshAllConfRp rp = new MoRefreshAllConfRp();
-
-        jedisTool.publish(
-                EnumHelper.EmChannel.客户端全部刷新配置channel.getKey(),
-                rq.getConfVersion());
-
-        rp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
-        rp.setMessage(EnumHelper.EmRpStatus.成功.toString());
         return rp;
     }
 }

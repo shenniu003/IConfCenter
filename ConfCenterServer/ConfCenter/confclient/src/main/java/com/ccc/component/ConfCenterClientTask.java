@@ -28,17 +28,17 @@ public class ConfCenterClientTask implements CommandLineRunner {
     private JedisTool jedisTool;
 
     /**
-     * 每分钟获取配置中心配置+（版本号不一致）更新本地缓存
+     * 每天获取配置中心配置+（版本号不一致）更新本地缓存
      */
-    @Scheduled(fixedDelay = 1000 * 60)
+    @Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
     public void refreshConf() {
-        System.out.println(new Date() + ":当前配置版本号" + confCenterClientService.getCurrentVersion());
-        //如果设置指定版本号不做更新
-        if (!confCenterConf.confserver_confs_currentConfVersion.isEmpty()) {
+        System.out.println(new Date() + ":当前配置版本号" +
+                confCenterConf.confserver_confs_currentConfVersion);
+        if (confCenterConf.confserver_confs_currentConfVersion.isEmpty()) {
+            System.out.println("版本号为空，无法自动拉取配置");
             return;
         }
-        System.out.println(new Date() + ":自动拉取配置中心配置");
-        updateConf(confCenterClientService.getCurrentVersion());
+        updateConf(confCenterConf.confserver_confs_currentConfVersion);
     }
 
     /**
@@ -51,7 +51,7 @@ public class ConfCenterClientTask implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         //订阅配置中心刷新配置通道
         jedisTool.subscribe(
-                EnumHelper.EmChannel.客户端全部刷新配置channel.getKey(),
+                "confs_" + confCenterConf.confserver_confs_currentConfVersion,
                 b -> {
                     System.out.println(new Date() + ":收到配置中心刷新配置通知，版本号-" + b);
                     updateConf(b.toString());
@@ -65,13 +65,8 @@ public class ConfCenterClientTask implements CommandLineRunner {
             return;
         }
 
-        //版本号一致不做处理
-        if (rp.getConfVersion().equals(confCenterClientService.getCurrentVersion())) {
-            return;
-        } else {
-            System.out.println(new Date() + ":更新本地配置");
-            //版本不一致，更新本地缓存
-            confCenterClientService.setConf(rp);
-        }
+        System.out.println(new Date() + ":更新本地配置");
+        //版本不一致，更新本地缓存
+        confCenterClientService.setConf(rp);
     }
 }

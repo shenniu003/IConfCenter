@@ -1,9 +1,6 @@
 package com.ct.tconf;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -51,6 +48,7 @@ public class LoadConf {
 
     /**
      * 根据配置文件后缀解析成map，支持后缀有.config .properties .xml
+     *
      * @param path
      * @return
      * @throws IOException
@@ -82,4 +80,57 @@ public class LoadConf {
         }
         return map;
     }
+
+    /**
+     * 获取文件路径的文件后缀 如：D:/aaa/a.properties   properties
+     *
+     * @param path
+     * @return
+     */
+    public static String getFilePathToProfix(String path) {
+        Pattern pattern = Pattern.compile("[^.]+.(?<profix>\\w+)");
+        Matcher matcher = pattern.matcher(path);
+        if (matcher.find()) {
+            return matcher.group("profix");
+        }
+        return "";
+    }
+
+    /**
+     * 获取文件路径的文件名 如：D:/aaa/a.properties   a.properties
+     *
+     * @param path
+     * @param isProfix 是否返回文件后缀
+     * @return
+     */
+    public static String getFilePathToName(String path, boolean isProfix) {
+        String[] pathArr = path.split("\\\\");
+        if (pathArr.length <= 0) {
+            return "";
+        }
+        if (!isProfix) {
+            return pathArr[pathArr.length - 1].replaceAll("\\.\\w+", "");
+        }
+        return pathArr[pathArr.length - 1];
+    }
+
+    /**
+     * 获取某个磁盘下文件列表
+     *
+     * @param path
+     * @return
+     */
+    public static Map<String, String> dirFiles(String path) {
+        Map<String, String> map = new HashMap<>();
+        if (path.isEmpty()) {
+            return map;
+        }
+
+        File baseFile = new File(path);
+        for (File file : baseFile.listFiles()) {
+            map.put(file.getName(), file.getPath());
+        }
+        return map;
+    }
+
 }

@@ -1,9 +1,0 @@
-﻿spring:
-  application:
-    name: confcenterserver
-confs:
-  conf: confcenter-active
-  author:
-    name: shenniu003
-    des: 666
-  pwd:

@@ -2,12 +2,14 @@ package com.cc;
 
 import com.ct.tconf.LoadConf;
 import com.ct.tconf.PropertiesConf;
+import com.ct.tconf.YmlConf;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.io.IOException;
+import java.util.Map;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -18,9 +20,13 @@ public class ConfserverApplication {
 
         SpringApplication.run(ConfserverApplication.class, args);
 
-        String pathYml = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\application-active.yml";
+        String confBasePath = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs";
         String pathProperties = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\application-20180903.properties";
         String pathConfig = "D:\\my_study\\study_java\\IConfCenter\\ConfCenterServer\\ConfCenter\\confserver\\src\\main\\resources\\confs\\App.config";
+
+//        LoadConf.dirFiles(confBasePath).forEach((key, val) -> {
+//            System.out.println(key + "=" + val);
+//        });
 
 //        try {
 //            LoadConf.readConfToMap(pathConfig).forEach((key, val) -> {
@@ -40,17 +46,10 @@ public class ConfserverApplication {
 //        }
 
 //        try {
-//            LoadConf.readConf(pathYml);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        //System.out.println(YmlConf.readConfToJson(pathYml));
-//        try {
 //            Map<String, Object> mapYml = YmlConf.readConfToHashMap(pathYml);
-//            mapYml.forEach((key, val) -> {
-//                System.out.println(key + "=" + val);
-//            });
+////            mapYml.forEach((key, val) -> {
+////                System.out.println(key + "=" + val);
+////            });
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }

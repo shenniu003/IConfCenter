@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>配置文件列表</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container">
+<h3>配置中心 - 版本列表</h3>
+<hr/>
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+    <tr>
+        <th>配置版本</th>
+        <th>编辑时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="file:${confs}">
+        <td th:text="${file.getName()}"></td>
+        <td th:text="${file.lastModified()}"></td>
+        <td>
+            <button type="button" class="btn btn-danger" data-th-value="${file.getPath()}" name="btnQiYong">发布</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $("button[name='btnQiYong']").click(function () {
+            if (!confirm("发布后，对应业务系统配置将更新，是否发布?")) {
+                return;
+            }
+            var _confPath = $(this).attr("value");
+            if (_confPath.length <= 0) {
+                alert("启动失败，请刷新界面");
+                return;
+            }
+            $.post("/ConfAdmin/qyConf",
+                {
+                    confPath: _confPath
+                },
+                function (result) {
+                    if (result) {
+                        if (result.status != 0) {
+                            alert(result.message.length <= 0 ? "启用失败，请稍后重试" : result.message);
+                        } else {
+                            alert(result.message);
+                        }
+                    }
+                });
+        });
+    })
+</script>

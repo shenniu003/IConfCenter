@@ -12,13 +12,14 @@ spring:
         max-wait: 3000
     timeout: 3000
     password:
+  thymeleaf:
+    cache: false
+#    mode: LEGACYHTML5
 
 confserver:
   confs:
     basepath: D:\my_study\study_java\IConfCenter\ConfCenterServer\ConfCenter\confserver\src\main\resources\confs #配置中心上传配置文件存储路径
-    baseEndfix: properties #配置文件后缀，计划支持：properties,config,yml
-    cacheTime: 86400 #秒 1*60*60*24 = 86400
-    currentConfVersion: application-20180903 #默认需要同步配置的版本
+    currentConfVersion: application-20180903.properties #默认需要同步配置的版本
 
 server:
   port: 8000

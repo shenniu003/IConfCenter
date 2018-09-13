@@ -16,18 +16,6 @@ public class ConfCenterConf {
     public String confserver_confs_basepath;
 
     /**
-     * 配置文件后缀，计划支持：properties,config,yml
-     */
-    @Value("${confserver.confs.baseEndfix}")
-    public String confserver_confs_baseEndfix;
-
-    /**
-     * 缓存读取配置文件时间 单位：秒 1*60*60*24 = 86400
-     */
-    @Value("${confserver.confs.cacheTime}")
-    public long confserver_confs_cacheTime;
-
-    /**
      * 默认需要同步配置的版本
      */
     @Value("${confserver.confs.currentConfVersion}")

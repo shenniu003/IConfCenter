@@ -70,9 +70,13 @@ public class JedisTool {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            //NX:不存在key创建
-            //EX:秒
-            return jedis.set(key, val, "NX", "EX", time).equalsIgnoreCase("OK");
+            if (time <= 0) {
+                return jedis.set(key, val).equalsIgnoreCase("OK");
+            } else {
+                //NX:不存在key创建
+                //EX:秒
+                return jedis.set(key, val, "NX", "EX", time).equalsIgnoreCase("OK");
+            }
         } catch (Exception ex) {
         } finally {
             if (jedis != null) {

@@ -25,7 +25,7 @@ public class YmlConf {
             Map<String, Object> ymlMap = yaml.load(fileInputStream);
             ymlMap.forEach((key, val) -> {
                 String strOrg = key + "=" + val;
-               // System.out.println(strOrg);
+                System.out.println(strOrg);
                 map.putAll(matchConfItem("", strOrg));
             });
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class YmlConf {
             while (matcher01.find()) {
                 String patternKey01 = matcher01.group("key01");
                 String patternVal01 = matcher01.group("val01");
-                System.out.println(patternKey01 + "-" + patternVal01);
+                System.out.println(patternKey01 + "--" + patternVal01);
             }
         }
         if (map.size() <= 0) {

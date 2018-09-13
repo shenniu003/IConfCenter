@@ -15,4 +15,4 @@ spring:
 confserver:
   confs:
     confserverurl: http://localhost:8080 #配置中心服务地址
-    currentConfVersion: #指定要获取的配置版本，不填保持最新版本
+    currentConfVersion: application-20180903.properties #需要同步配置的版本 也是订阅channel名

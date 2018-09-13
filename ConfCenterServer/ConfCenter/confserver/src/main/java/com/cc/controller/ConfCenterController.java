@@ -19,7 +19,7 @@ public class ConfCenterController {
     private ConfCenterService confCenterService;
 
     /**
-     * 获取配置
+     * 根据版本号 获取配置
      *
      * @param rq
      * @return
@@ -27,21 +27,5 @@ public class ConfCenterController {
     @PostMapping("/getconf")
     public MoGetConfRp getconf(@RequestBody MoGetConfRq rq) {
         return confCenterService.getconf(rq);
-    }
-
-    /**
-     * 通知所有客户端 重新获取配置
-     *
-     * @param rq
-     * @return
-     */
-    @PostMapping("/refreshAllConf")
-    public MoRefreshAllConfRp refreshAllConf(@RequestBody MoRefreshAllConfRq rq) {
-        MoRefreshAllConfRp rp = new MoRefreshAllConfRp();
-        if (rq.getConfVersion() == null || rq.getConfVersion().isEmpty()) {
-            rp.setMessage("请设置通知版本号");
-            return rp;
-        }
-        return confCenterService.refreshAllConf(rq);
     }
 }
