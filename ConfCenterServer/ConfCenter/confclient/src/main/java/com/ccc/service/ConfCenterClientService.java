@@ -64,6 +64,15 @@ public class ConfCenterClientService {
     }
 
     /**
+     * 获取当前配置版本号
+     *
+     * @return
+     */
+    public long getConfLastModified() {
+        return confRp == null ? 0L : confRp.getConfLastModified();
+    }
+
+    /**
      * 更新本地配置缓存
      *
      * @param rp
@@ -100,7 +109,7 @@ public class ConfCenterClientService {
     public MoGetConfRp getConfCenterConf(String strVersion) {
 
         System.out.println(new Date() + ":请求获取配置中心配置,配置中心地址：" +
-                confCenterConf.confserver_confs_confserverurl + ",当前版本号：" +
+                confCenterConf.confserver_confs_confserverurl + ",当前版本：" +
                 strVersion);
         //获取中心配置
         MoGetConfRq rq = new MoGetConfRq();

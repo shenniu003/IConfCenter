@@ -16,6 +16,19 @@ public class MoGetConfRp extends MoRp {
      */
     private Map<String, Object> confs;
 
+    /**
+     * 配置版本号
+     */
+    private long confLastModified;
+
+    public long getConfLastModified() {
+        return confLastModified;
+    }
+
+    public void setConfLastModified(long confLastModified) {
+        this.confLastModified = confLastModified;
+    }
+
     public String getConfVersion() {
         return confVersion;
     }

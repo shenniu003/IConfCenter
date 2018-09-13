@@ -1,6 +1,7 @@
 package com.cc.service;
 
 import apimodel.EnumHelper;
+import apimodel.MoGetConfRp;
 import apimodel.MoRp;
 import com.cc.component.ConfCenterConf;
 import com.ct.tconf.LoadConf;
@@ -60,16 +61,24 @@ public class ConfAdminService {
             }
 
             //文件名称
-            String filePathToName = LoadConf.getFilePathToName(confPath,true);
+            String filePathToName = LoadConf.getFilePathToName(confPath, true);
 
             //缓存key
             String cacheKey = String.format("confs_%s", filePathToName);
 
+            //2018.09.13 临时增加配置文件修改时间
+            File file = new File(confPath);
+            MoGetConfRp confRp = new MoGetConfRp();
+            confRp.setConfLastModified(file.lastModified());
+            confRp.setConfs(map);
+            confRp.setConfVersion(filePathToName);
+            confRp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
+
             //存储到缓存中 永久
-            if (jedisTool.set(cacheKey, map, 0)) {
+            if (jedisTool.set(cacheKey, confRp, 0)) {
 
                 //发布消息，通知客户端更新配置
-                jedisTool.publish(cacheKey, filePathToName);
+                jedisTool.publish(cacheKey, confRp.getConfVersion());
                 rp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
                 rp.setMessage(EnumHelper.EmRpStatus.成功.toString());
             }

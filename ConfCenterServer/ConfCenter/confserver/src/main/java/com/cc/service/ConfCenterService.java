@@ -32,14 +32,13 @@ public class ConfCenterService {
     public MoGetConfRp getconf(MoGetConfRq rq) {
 
         MoGetConfRp rp = new MoGetConfRp();
-        Map<String, Object> map = null;
         try {
-            //未指定配置版本，采用默认配置版本号
+            //未指定配置版本，采用默认配置版本
             if (rq.getConfVersion().isEmpty()) {
                 rq.setConfVersion(confCenterConf.confserver_confs_currentConfVersion);
             }
             if (rq.getConfVersion().isEmpty()) {
-                rp.setMessage("未找到配置版本号");
+                rp.setMessage("未找到配置版本");
                 return rp;
             }
 
@@ -47,12 +46,11 @@ public class ConfCenterService {
             String cacheKey = String.format("confs_%s", rq.getConfVersion());
 
             //获取缓存中是否存在
-            map = jedisTool.get(cacheKey, Map.class);
-            if (map != null && !map.isEmpty()) {
-                rp.setConfs(map);
+            rp = jedisTool.get(cacheKey, MoGetConfRp.class);
+            if (rp.getStatus() == EnumHelper.EmRpStatus.成功.getVal() &&
+                    rp.getConfs().size() >= 1) {
                 rp.setStatus(EnumHelper.EmRpStatus.成功.getVal());
                 rp.setMessage(EnumHelper.EmRpStatus.成功.toString());
-                rp.setConfVersion(rq.getConfVersion());
                 return rp;
             }
         } catch (Exception e) {
