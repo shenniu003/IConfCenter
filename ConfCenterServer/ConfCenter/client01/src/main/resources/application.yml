@@ -18,4 +18,4 @@ confserver:
     confserverurl: http://localhost:8000 #配置中心服务地址
     currentConfVersion: application-20180903.properties #需要同步配置的版本 也是订阅channel名
 server:
-  port: 8001
+  port: 8002

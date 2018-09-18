@@ -28,7 +28,8 @@ public class ConfCenterClientTask implements CommandLineRunner {
     private JedisTool jedisTool;
 
     /**
-     * 每天获取配置中心配置+（版本号不一致）更新本地缓存
+     * 每分钟获取配置，版本号不一致更新本地缓存
+     *
      */
     @Scheduled(initialDelay =  1000 * 60,fixedDelay = 1000 * 60)
     public void refreshConf() {
@@ -42,7 +43,7 @@ public class ConfCenterClientTask implements CommandLineRunner {
     }
 
     /**
-     * 程序启动执行服务
+     * 程序启动执行服务 订阅配置中心刷新配置通道
      *
      * @param strings
      * @throws Exception
@@ -58,6 +59,10 @@ public class ConfCenterClientTask implements CommandLineRunner {
                 });
     }
 
+    /**
+     * 更新本地配置
+     * @param strVersion
+     */
     private void updateConf(String strVersion) {
         //获取配置中心配置
         MoGetConfRp rp = confCenterClientService.getConfCenterConf(strVersion);
